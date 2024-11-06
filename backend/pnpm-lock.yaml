@@ -23,6 +23,9 @@ importers:
       express:
         specifier: ^4.21.1
         version: 4.21.1
+      express-session:
+        specifier: ^1.18.1
+        version: 1.18.1
       mongoose:
         specifier: ^8.8.0
         version: 8.8.0
@@ -32,9 +35,9 @@ importers:
       passport:
         specifier: ^0.7.0
         version: 0.7.0
-      passport-http-bearer:
-        specifier: ^1.0.1
-        version: 1.0.1
+      passport-local:
+        specifier: ^1.0.0
+        version: 1.0.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -151,6 +154,9 @@ packages:
   cookie-signature@1.0.6:
     resolution: {integrity: sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ==}
 
+  cookie-signature@1.0.7:
+    resolution: {integrity: sha512-NXdYc3dLr47pBkpUCHtKSwIOQXLVn8dZEuywboCOJY/osA0wFSLlSawr3KN8qXJEyX66FcONTH8EIlVuK0yyFA==}
+
   cookie@0.7.1:
     resolution: {integrity: sha512-6DnInpx7SJ2AK3+CTUE/ZM0vWTUboZCegxhC2xiIydHR9jNuTAASBrfEpHhiGOZw/nX51bHt6YQl8jsGo4y/0w==}
     engines: {node: '>= 0.6'}
@@ -231,6 +237,10 @@ packages:
   etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  express-session@1.18.1:
+    resolution: {integrity: sha512-a5mtTqEaZvBCL9A9aqkrtfz+3SMDhOVUnjafjo+s7A9Txkq+SVX2DLvSp1Zrv4uCXa3lMSK3viWnh9Gg07PBUA==}
+    engines: {node: '>= 0.8.0'}
 
   express@4.21.1:
     resolution: {integrity: sha512-YSFlK1Ee0/GC8QaO91tHcDxJiE/X4FbpAyQWkxAvG6AXCuR65YzK8ua6D9hvi/TzUfZMpc+BwuM1IPw8fmQBiQ==}
@@ -504,6 +514,10 @@ packages:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
     engines: {node: '>= 0.8'}
 
+  on-headers@1.0.2:
+    resolution: {integrity: sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==}
+    engines: {node: '>= 0.8'}
+
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
 
@@ -511,8 +525,8 @@ packages:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
     engines: {node: '>= 0.8'}
 
-  passport-http-bearer@1.0.1:
-    resolution: {integrity: sha512-SELQM+dOTuMigr9yu8Wo4Fm3ciFfkMq5h/ZQ8ffi4ELgZrX1xh9PlglqZdcUZ1upzJD/whVyt+YWF62s3U6Ipw==}
+  passport-local@1.0.0:
+    resolution: {integrity: sha512-9wCE6qKznvf9mQYYbgJ3sVOHmCWoUNMVFoZzNoznmISbhnNNPhN9xfY3sLmScHMetEJeoY7CXwfhCe7argfQow==}
     engines: {node: '>= 0.4.0'}
 
   passport-strategy@1.0.0:
@@ -551,6 +565,10 @@ packages:
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
     engines: {node: '>=0.6'}
+
+  random-bytes@1.0.0:
+    resolution: {integrity: sha512-iv7LhNVO047HzYR3InF6pUcUsPQiHTM1Qal51DcGSuZFBil1aBBWG5eHPNek7bvILMaYJ/8RU1e8w1AMdHmLQQ==}
+    engines: {node: '>= 0.8'}
 
   range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
@@ -668,6 +686,10 @@ packages:
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
+
+  uid-safe@2.1.5:
+    resolution: {integrity: sha512-KPHm4VL5dDXKz01UuEd88Df+KzynaohSL9fBh096KWAxSKZQDI2uBrVqtvRM4rwrIrRRKsdLNML/lnaaVSRioA==}
+    engines: {node: '>= 0.8'}
 
   undefsafe@2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
@@ -852,6 +874,8 @@ snapshots:
 
   cookie-signature@1.0.6: {}
 
+  cookie-signature@1.0.7: {}
+
   cookie@0.7.1: {}
 
   cookie@0.7.2: {}
@@ -904,6 +928,19 @@ snapshots:
   escape-html@1.0.3: {}
 
   etag@1.8.1: {}
+
+  express-session@1.18.1:
+    dependencies:
+      cookie: 0.7.2
+      cookie-signature: 1.0.7
+      debug: 2.6.9
+      depd: 2.0.0
+      on-headers: 1.0.2
+      parseurl: 1.3.3
+      safe-buffer: 5.2.1
+      uid-safe: 2.1.5
+    transitivePeerDependencies:
+      - supports-color
 
   express@4.21.1:
     dependencies:
@@ -1192,13 +1229,15 @@ snapshots:
     dependencies:
       ee-first: 1.1.1
 
+  on-headers@1.0.2: {}
+
   once@1.4.0:
     dependencies:
       wrappy: 1.0.2
 
   parseurl@1.3.3: {}
 
-  passport-http-bearer@1.0.1:
+  passport-local@1.0.0:
     dependencies:
       passport-strategy: 1.0.0
 
@@ -1230,6 +1269,8 @@ snapshots:
   qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
+
+  random-bytes@1.0.0: {}
 
   range-parser@1.2.1: {}
 
@@ -1368,6 +1409,10 @@ snapshots:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+
+  uid-safe@2.1.5:
+    dependencies:
+      random-bytes: 1.0.0
 
   undefsafe@2.0.5: {}
 

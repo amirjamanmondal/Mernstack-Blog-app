@@ -2,10 +2,7 @@ import { z } from "zod";
 
 const userValidator = z.object({
   name: z.string().trim().optional(),
-  email: z
-    .email({ message: "Email is not valid" })
-    .unique({ message: "Email must be unique" })
-    .trim(),
+  email: z.string().email().trim(),
   password: z
     .string()
     .min(8, { message: "Password must have atleast 8 character" })

@@ -1,6 +1,6 @@
-import User from "../../models/User";
+import User from "../../models/User.js";
 import bcrypt from "bcrypt";
-import userValidator from "../../validator/userValidator";
+import userValidator from "../../validator/userValidator.js";
 
 const Signup = async (req, res) => {
   try {
@@ -27,6 +27,7 @@ const Signup = async (req, res) => {
     if (user) {
       await user.save();
     }
+    res.status(201).json({ user });
   } catch (error) {
     res.status(500).json(error);
   }
