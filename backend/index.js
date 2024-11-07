@@ -4,13 +4,10 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const LocalStrategy = require("passport-local").Strategy;
 const passport = require("passport");
-const bcrypt = require("bcrypt");
-
 const router = require("./router/userRouter.js");
 const session = require("express-session");
-const User = require("./models/User.js");
+const initializePassport = require("./helpers/passport-Config.js");
 
 // Initialize Express app
 const app = express();
@@ -47,60 +44,8 @@ app.use(
 );
 
 // Passport Local Strategy
-passport.use(
-  new LocalStrategy(
-    { usernameField: "email", passwordField: "password" },
-    async (email, password, done) => {
-      try {
-        const user = await User.findOne({ email });
-        if (!user) {
-          return done(null, false, {
-            message: "User not found or invalid email",
-          });
-        }
-        if (!(await bcrypt.compare(password, user.password || ""))) {
-          return done(null, false, { message: "Password not matched" });
-        }
-        return done(null, user);
-      } catch (error) {
-        console.error(error);
-        return done(error, false, { message: "Internal server error" });
-      }
-    }
-  )
-);
+initializePassport(passport);
 
-// Passport Serialize and Deserialize
-passport.serializeUser((user, done) => {
-  try {
-    done(null, user.id);
-  } catch (error) {
-    console.error(error);
-    return done(error, false, {
-      message: "Internal error during serialization",
-    });
-  }
-});
-
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    if (!user) {
-      return done(null, false, { message: "User not found" });
-    }
-    return done(null, user);
-  } catch (error) {
-    console.error(error);
-    return done(error, false, {
-      message: "Internal error during deserialization",
-    });
-  }
-});
-
-app.use((req, res, next) => {
-  console.log("Session:", req.session);
-  next();
-});
 
 // Database connection
 mongoose

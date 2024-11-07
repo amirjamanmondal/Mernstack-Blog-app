@@ -28,6 +28,6 @@ router.get("/dashboard", isAuthenticated, GetUser);
 
 router.post("/blog", isAuthenticated, CreateBlog);
 
-router.get("/logout", Logout);
+// router.get("/logout", Logout);
 
 module.exports = router;
