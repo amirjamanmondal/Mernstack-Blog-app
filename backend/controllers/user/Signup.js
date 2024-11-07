@@ -1,6 +1,6 @@
-import User from "../../models/User.js";
-import bcrypt from "bcrypt";
-import userValidator from "../../validator/userValidator.js";
+const User = require("../../models/User.js");
+const bcrypt = require("bcrypt");
+const userValidator = require("../../validator/userValidator.js");
 
 const Signup = async (req, res) => {
   try {
@@ -33,4 +33,4 @@ const Signup = async (req, res) => {
   }
 };
 
-export default Signup;
+module.exports = Signup;

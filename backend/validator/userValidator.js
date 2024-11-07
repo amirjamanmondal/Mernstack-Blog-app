@@ -1,4 +1,4 @@
-import { z } from "zod";
+const { z } = require("zod");
 
 const userValidator = z.object({
   name: z.string().trim().optional(),
@@ -13,4 +13,4 @@ const userValidator = z.object({
   age: z.number().optional(),
 });
 
-export default userValidator;
+module.exports = userValidator;

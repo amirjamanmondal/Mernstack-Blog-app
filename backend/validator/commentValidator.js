@@ -1,4 +1,4 @@
-import { z } from "zod";
+const { z } = require("zod");
 
 const commentValidator = z.object({
   content: z.string().trim(),
@@ -8,4 +8,4 @@ const commentValidator = z.object({
   createdAt: z.date().default(new Date()),
 });
 
-export default commentValidator;
+module.exports = commentValidator;

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const blogPostSchema = new mongoose.Schema(
   {
@@ -18,13 +18,15 @@ const blogPostSchema = new mongoose.Schema(
     tags: [String],
 
     category: [String],
-    comments: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "comment",
-    },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   { timestamps: true }
 );
 
 const BlogPost = mongoose.model("blogPost", blogPostSchema);
-export default BlogPost;
+module.exports = BlogPost;

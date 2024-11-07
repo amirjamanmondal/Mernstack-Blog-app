@@ -1,7 +1,6 @@
-import { z } from "zod";
+const { z } = require("zod");
 
 const tagValidator = z.object({
   name: z.string().trim(),
 });
-
-export default tagValidator;
+module.exports = tagValidator;
