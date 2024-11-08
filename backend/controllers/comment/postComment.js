@@ -12,7 +12,6 @@ const PostComment = async (req, res) => {
     const post = await BlogPost.findById(id);
 
     if (!post) return res.status(404).json({ message: "Blog post not found" });
-    console.log(post);
 
     const newComment = new Comments({
       author: user._id,

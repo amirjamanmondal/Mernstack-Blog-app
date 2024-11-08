@@ -5,7 +5,6 @@ const CreateBlog = async (req, res) => {
   try {
     const user = req.user;
     const { title, content, tags, category } = validateBlogPost(req.body, true);
-
     const newBlog = new BlogPost({
       title,
       content,
@@ -18,7 +17,7 @@ const CreateBlog = async (req, res) => {
 
     res.status(201).json({ message: "new blog created successfully", newBlog });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json(error.message);
   }
 };
 

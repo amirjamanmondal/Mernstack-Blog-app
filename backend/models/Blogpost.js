@@ -17,7 +17,7 @@ const blogPostSchema = new mongoose.Schema(
     },
     tags: [String],
 
-    category: [String],
+    category: String,
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,

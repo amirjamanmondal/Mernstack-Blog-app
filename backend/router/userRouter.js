@@ -10,6 +10,7 @@ const GetBlogs = require("../controllers/blogPost/getBlogs.js");
 const DeleteBlog = require("../controllers/blogPost/deleteBlog.js");
 const PostComment = require("../controllers/comment/postComment.js");
 const GetBlogByCategory = require("../controllers/blogPost/filterBlogByCategory.js");
+const GetOwnBlogs = require("../controllers/blogPost/GetOwnBlogs.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -32,7 +33,9 @@ router.post(
 router.get("/dashboard", isAuthenticated, GetUser);
 
 router.post("/blog", isAuthenticated, CreateBlog);
+
 router.get("/blog", isAuthenticated, GetBlogs);
+router.get("/user/blog", isAuthenticated, GetOwnBlogs);
 router.patch("/blog/:id", isAuthenticated, UpdateBlog);
 router.delete("/blog/:id", isAuthenticated, DeleteBlog);
 router.post("/comment/:id", isAuthenticated, PostComment);

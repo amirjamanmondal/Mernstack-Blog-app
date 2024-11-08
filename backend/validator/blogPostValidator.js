@@ -14,7 +14,8 @@ function validateBlogPost(data, isCreate) {
         .array(z.string().min(1, { message: "Tag can not be empty" }))
         .optional(),
       category: z
-        .array(z.string().min(1, { message: "category can not be empty" }))
+        .string()
+        .min(1, { message: "category can not be empty" })
         .optional(),
       comments: z
         .array(
