@@ -2,8 +2,7 @@ const BlogPost = require("../../models/Blogpost.js");
 
 const GetBlogs = async (req, res) => {
   try {
-    const user = req.user;
-    const blogs = await BlogPost.find().select("_id comments");
+    const blogs = await BlogPost.find().select("_id content category comments");
 
     if (!blogs)
       return res
