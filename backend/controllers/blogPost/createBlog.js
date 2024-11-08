@@ -1,12 +1,10 @@
 const BlogPost = require("../../models/Blogpost");
-const blogPostValidator = require("../../validator/blogPostValidator");
+const validateBlogPost = require("../../validator/blogPostValidator");
 
 const CreateBlog = async (req, res) => {
   try {
     const user = req.user;
-    const { title, content, tags, category } = blogPostValidator.parse(
-      req.body
-    );
+    const { title, content, tags, category } = validateBlogPost(req.body, true);
 
     const newBlog = new BlogPost({
       title,
@@ -17,7 +15,8 @@ const CreateBlog = async (req, res) => {
     });
 
     await newBlog.save();
-    res.status(201).json({ message: "new blog created successfully" });
+
+    res.status(201).json({ message: "new blog created successfully", newBlog });
   } catch (error) {
     res.status(500).json(error);
   }
