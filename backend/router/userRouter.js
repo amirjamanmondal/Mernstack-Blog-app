@@ -5,6 +5,8 @@ const isAuthenticated = require("../middleware/AuthUser.js");
 const GetUser = require("../controllers/user/GetUser.js");
 const Logout = require("../controllers/user/Logout.js");
 const CreateBlog = require("../controllers/blogPost/createBlog.js");
+const UpdateBlog = require("../controllers/blogPost/updateBlog.js");
+const GetBlogs = require("../controllers/blogPost/getBlogs.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -27,7 +29,8 @@ router.post(
 router.get("/dashboard", isAuthenticated, GetUser);
 
 router.post("/blog", isAuthenticated, CreateBlog);
-
+router.get("/blog", isAuthenticated, GetBlogs);
+router.patch("/blog/:id", isAuthenticated, UpdateBlog);
 // router.get("/logout", Logout);
 
 module.exports = router;

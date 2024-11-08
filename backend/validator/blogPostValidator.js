@@ -1,22 +1,38 @@
 const { z } = require("zod");
 
-const blogPostValidator = z.object({
-  title: z.string().trim(),
-  content: z.string().trim(),
-  author: z.object({
-    _id: z.string().uuid(),
-  }).optional(),
-  tags: z.array(z.string().min(1, { message: "Tag can not be empty" })),
-  category: z.array(
-    z.string().min(1, { message: "category can not be empty" })
-  ),
-  comments: z
-    .array(
-      z.object({
-        _id: z.string().uuid(),
-      })
-    )
-    .optional(),
-});
+function validateBlogPost(data, isCreate) {
+  try {
+    const blogPostValidator = z.object({
+      title: isCreate ? z.string().trim() : z.string().trim().optional(),
+      content: isCreate ? z.string().trim() : z.string().trim().optional(),
+      author: z
+        .object({
+          _id: z.string().uuid(),
+        })
+        .optional(),
+      tags: z
+        .array(z.string().min(1, { message: "Tag can not be empty" }))
+        .optional(),
+      category: z
+        .array(z.string().min(1, { message: "category can not be empty" }))
+        .optional(),
+      comments: z
+        .array(
+          z.object({
+            _id: z.string().uuid(),
+          })
+        )
+        .optional(),
+    });
+    return (validateData = blogPostValidator.parse(data));
+  } catch (error) {
+    console.log(error);
 
-module.exports = blogPostValidator;
+    if (error instanceof z.ZodError) {
+      return { error: error.issues }; // Return detailed error information
+    } else {
+      throw error; // Re-throw unexpected errors
+    }
+  }
+}
+module.exports = validateBlogPost;
