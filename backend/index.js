@@ -8,6 +8,7 @@ const passport = require("passport");
 const router = require("./router/userRouter.js");
 const session = require("express-session");
 const initializePassport = require("./helpers/passport-Config.js");
+const adminRouter = require("./router/adminRouter.js");
 
 // Initialize Express app
 const app = express();
@@ -46,7 +47,6 @@ app.use(
 // Passport Local Strategy
 initializePassport(passport);
 
-
 // Database connection
 mongoose
   .connect(process.env.DATABASE_URI)
@@ -57,7 +57,7 @@ mongoose
 
 // Define routes
 app.use("/user", router);
-
+app.use("/admin", adminRouter);
 // Start the server
 const port = process.env.PORT || 8001;
 app.listen(port, () => console.log(`App is running on port ${port}`));

@@ -40,6 +40,6 @@ router.patch("/blog/:id", isAuthenticated, UpdateBlog);
 router.delete("/blog/:id", isAuthenticated, DeleteBlog);
 router.post("/comment/:id", isAuthenticated, PostComment);
 router.get("/blog/category", isAuthenticated, GetBlogByCategory);
-// router.get("/logout", Logout);
+router.get("/logout", Logout);
 
 module.exports = router;
