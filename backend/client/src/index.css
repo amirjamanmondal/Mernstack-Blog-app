@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1{
+    font-size: x-large;
+}
+
+p{
+    font-size: medium;
+}
