@@ -1,12 +1,11 @@
 import React from "react";
 import VlogPost from "../../components/Upload/VlogPost";
-
-const Admin = () => {
+const PostContent = () => {
   return (
-    <div className="w-full ">
+    <div>
       <VlogPost />
     </div>
   );
 };
 
-export default Admin;
+export default PostContent;

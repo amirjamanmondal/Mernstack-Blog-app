@@ -17,6 +17,7 @@ const NavBar = () => {
         <li>
           <a href="/articles">Articles</a>
         </li>
+        <li><a href="/admin/landing">Logout</a></li>
       </ul>
     </div>
   );
