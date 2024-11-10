@@ -4,7 +4,7 @@ import Category from "./Category";
 
 const Article = () => {
   return (
-    <div className="w-full flex flex-col gap-3">
+    <div className="w-full flex flex-col gap-3 p-6">
       <Category />
       <hr className="w-full text-base h-[2px] bg-red-700" />
       <div className="w-full flex flex-row gap-3">
