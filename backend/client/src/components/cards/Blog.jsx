@@ -1,15 +1,16 @@
 import React from "react";
+import img from "../../static/pexels-sora.jpg";
 
 const Blog = () => {
   return (
-    <div className="h-fit w-[24rem] text-sm p-2 bg-gray-700 rounded flex flex-col gap-4 justify-start items-center">
-      <div className="w-full h-20 bg-red-400"></div>
+    <div className="h-fit w-full bg-red-500 p-8 flex flex-col gap-6 rounded-lg">
+      <img src={img} className="w-full h-48 bg-red-400 "></img>
       <h1 className="w-full flex justify-start text-lg text-blue-500">
         Iphone introduce a new feature
       </h1>
       <span className="w-full">Amir Jaman Mondal</span>
-      <button className=" w-full flex justify-center mb-2 text-base bg-slate-200 px-2 py-1 rounded-md">
-        Read
+      <button className=" w-full flex justify-center text-green-600">
+        <a href="/login">Read</a>
       </button>
     </div>
   );

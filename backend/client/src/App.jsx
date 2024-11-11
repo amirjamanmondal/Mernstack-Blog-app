@@ -17,8 +17,8 @@ function App() {
       <NavBar />
       <hr className="w-full text-base h-[1px] bg-red-700" />
       <Routes>
-        <Route path="/user/lnading" element={<UserLandingPage />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<UserLandingPage />} />
+        <Route path="/user" element={<Home />} />
         <Route path="/article" element={<Article />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/admin/signup" element={<AdminSignup />} />

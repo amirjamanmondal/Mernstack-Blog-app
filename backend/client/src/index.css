@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-h1{
-    font-size: x-large;
+h1 {
+  font-size: x-large;
 }
 
-p{
-    font-size: medium;
+p {
+  font-size: medium;
+}
+.dsa {
+  clip-path: polygon(100% 100%, 50% 100%, 100% 50%, 50% 50%);
 }
