@@ -27,11 +27,17 @@ router.post(
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "5d",
     });
+    res.status(200).cookie("token", token, {
+      expires: new Date(Date.now() + 100000),
+      httpOnly: true,
+      secure: true,
+      sameSite: "Strict",
+    });
     res.status(200).json({ message: "login successful", user, token });
   }
 );
 
-router.get("/dashboard", isAuthenticated, GetUser);
+router.get("/", isAuthenticated, GetUser);
 
 router.post("/blog", isAuthenticated, CreateBlog);
 
