@@ -18,34 +18,23 @@ const LoginUser = () => {
     });
 
     // Example usage:
-    apiClient
-      .post("/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        // Handle successful login
-        const token = response.data?.token;
-        setUser(response.data.user);
-        localStorage.setItem("token", token);
-        console.log(response.data);
-        console.log(response.data?.token);
-
-        // redirect('/')
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error(error.message);
+    try {
+      const res = await axios.post("http://localhost:8000/admin/login", {
+        email,
+        password,
       });
-
-    console.log("email is : ", email);
-    console.log("password is : ", password);
-
+      console.log(res.data);
+      setUser(res.data.user);
+      localStorage.setItem("sid", res.data?.token);
+    } catch (error) {
+      console.error(error);
+    }
     setEmail("");
     setPassword("");
   };
   return (
     <form className="w-[30rem] h-[30rem] bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md">
+      <p>{user ? <span>Login successful</span> : <span></span>}</p>
       <h1 className="text-3xl font-extrabold">Login</h1>
       <input
         value={email}

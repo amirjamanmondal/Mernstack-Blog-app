@@ -21,7 +21,7 @@ const UserProfile = () => {
         .get("/dashboard")
         .then((response) => {
           // Handle successful login
-          console.log(token);
+          
           
           console.log(response.data);
           setUser(response.data?.user);
