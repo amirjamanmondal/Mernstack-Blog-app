@@ -27,7 +27,9 @@ const Content = () => {
     }
     return (
       <div className="w-full h-fit flex flex-col justify-around items-center gap-3 border p-3">
-        {}
+        {content.map((item,index)=>{
+          <div key={index} id={item._id}></div>
+        })}
 
         <h1 className="w-fit p-2 text-xl font-bold text-blue-500">
           Hello new content

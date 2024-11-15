@@ -56,23 +56,12 @@ mongoose
   )
   .catch((err) => console.error(err.message));
 
-// Define routes
-// app.use("/", (req, res) => res.send("Backend is running"));
-app.get("/cookie", (req, res) => {
-  try {
-    res.cookie("token", "amirjamanmondla123456", {
-      expires: new Date(Date.now() + 100000),
-      httpOnly: true,
-      secure: false, // Set to true in production with HTTPS
-      sameSite: "Strict",
-    });
-    res.json({ message: "Cookie set successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Server error" });
-  }
-});
+
+
 app.use("/user", router);
 app.use("/admin", adminRouter);
+
+
 // Start the server
 const port = process.env.PORT || 8001;
 app.listen(port, () => console.log(`App is running on port ${port}`));

@@ -32,7 +32,7 @@ const LoginUser = () => {
       console.log(res.data);
       setUser(res.data.user);
       localStorage.setItem("sid", res.data?.token);
-      navigate('/user')
+      navigate("/user");
     } catch (error) {
       console.error(error);
     }
