@@ -19,8 +19,9 @@ dotenv.config();
 // Configure middleware
 app.use(cookieParser());
 const corsOption = {
-  origin: process.env.CLIENT_URL, // Adjust for your use case
-  method: "GET, HEAD, PUT, PATCH, POST, DELETE",
+  origin: "http://localhost:5173", // Adjust for your client-side URL
+  credentials: true, // Use true instead of "include"
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOption));
@@ -59,15 +60,15 @@ mongoose
 // app.use("/", (req, res) => res.send("Backend is running"));
 app.get("/cookie", (req, res) => {
   try {
-    res.status(200).cookie("token", "amirjamanmondla123456", {
+    res.cookie("token", "amirjamanmondla123456", {
       expires: new Date(Date.now() + 100000),
       httpOnly: true,
-      secure: true,
+      secure: false, // Set to true in production with HTTPS
       sameSite: "Strict",
     });
-    res.status(200).json({ message: "cookie all set cookie" });
+    res.json({ message: "Cookie set successfully" });
   } catch (error) {
-    res.status(500).json({ message: "error in server" });
+    res.status(500).json({ message: "Server error" });
   }
 });
 app.use("/user", router);

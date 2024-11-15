@@ -30,7 +30,7 @@ adminRouter.post("/login", async (req, res) => {
     res.status(200).cookie("token", user._id, {
       expires: new Date(Date.now() + 3600000),
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "Strict",
     });
     res.status(200).json({ message: "login successful", user });
@@ -47,5 +47,6 @@ adminRouter.get("/users", isAuthenticated, GetAllUsers);
 adminRouter.get("/user/blog/:id", isAuthenticated, GetBlogOfUser);
 
 adminRouter.get("/logout", Logout);
+
 
 module.exports = adminRouter;

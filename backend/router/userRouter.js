@@ -12,6 +12,7 @@ const DeleteBlog = require("../controllers/blogPost/deleteBlog.js");
 const PostComment = require("../controllers/comment/postComment.js");
 const GetBlogByCategory = require("../controllers/blogPost/filterBlogByCategory.js");
 const GetOwnBlogs = require("../controllers/blogPost/GetOwnBlogs.js");
+const User = require("../models/User.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -19,21 +20,16 @@ router.post("/signup", Signup);
 router.post(
   "/login",
   passport.authenticate("local", {
-    successMessage: "Login succesfull",
-    failureMessage: "something went wrong",
+    successMessage: "Login successful",
+    failureMessage: "Something went wrong",
   }),
   (req, res) => {
     const user = req.user;
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "5d",
     });
-    res.status(200).cookie("token", token, {
-      expires: new Date(Date.now() + 100000),
-      httpOnly: true,
-      secure: true,
-      sameSite: "Strict",
-    });
-    res.status(200).json({ message: "login successful", user, token });
+
+    res.status(200).json({ message: "Login successful", user, token });
   }
 );
 
