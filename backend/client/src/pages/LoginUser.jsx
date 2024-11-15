@@ -19,10 +19,14 @@ const LoginUser = () => {
 
     // Example usage:
     try {
-      const res = await axios.post("http://localhost:8000/admin/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:8000/user/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
       console.log(res.data);
       setUser(res.data.user);
       localStorage.setItem("sid", res.data?.token);
