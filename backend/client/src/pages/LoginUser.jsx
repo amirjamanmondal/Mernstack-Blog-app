@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState();
+  const navigate = useNavigate();
   const Login_URL = "http://localhost:8000/user";
   const LoginHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ const LoginUser = () => {
       console.log(res.data);
       setUser(res.data.user);
       localStorage.setItem("sid", res.data?.token);
+      navigate('/user')
     } catch (error) {
       console.error(error);
     }
