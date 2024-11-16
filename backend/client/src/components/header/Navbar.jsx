@@ -1,13 +1,14 @@
 import React from "react";
+import Logout from "../Logout";
 
 const Navbar = () => {
   return (
-    <nav className="w-full bg-gray-800 text-white">
+    <nav className="w-full bg-gray-800 text-white p-4">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <a href="/" className="font-bold text-xl">
           My Blog
         </a>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-4 justify-center items-center">
           <li>
             <a href="/">Home</a>
           </li>
@@ -24,7 +25,7 @@ const Navbar = () => {
             <a href="/login">Login</a>
           </li>
           <li>
-            <a href="/signup">Signup</a>
+            <Logout />
           </li>
         </ul>
       </div>

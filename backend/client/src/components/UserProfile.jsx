@@ -1,17 +1,19 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
+  const [Errors, setErrors] = useState(null);
+  const navigate = useNavigate();
   const Login_URL = "http://localhost:8000/user/";
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(Login_URL, { withCredentials: true });
-        setUser(res.data.user);
+        setUser(res.data?.user);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        navigate("/login");
       }
     };
     fetchData();
@@ -51,7 +53,9 @@ const UserProfile = () => {
           <span className="w-fit text-sm border border-blue-500 p-2 rounded-md">
             Update: {formattedDateUpdate}
           </span>
-          <button><a href="/blog">content</a></button>
+          <button>
+            <a href="/blog">content</a>
+          </button>
         </div>
       </div>
     );
