@@ -3,10 +3,10 @@ const passport = require("passport");
 const Signup = require("../controllers/admin/Signup");
 const isAuthenticated = require("../middleware/AuthUser");
 const GetInfo = require("../controllers/admin/GetInfo");
-const GetAllPost = require("../controllers/admin/GetAllPost");
+const GetAllPost = require("../controllers/blogPost/GetAllPost");
 const GetAllUsers = require("../controllers/admin/GetAllUsers");
 const Logout = require("../controllers/admin/Logout");
-const GetBlogOfUser = require("../controllers/admin/GetBlogOfUser");
+const GetBlogOfUser = require("../controllers/blogPost/GetBlogOfUser");
 const Admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
 

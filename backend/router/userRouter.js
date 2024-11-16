@@ -14,6 +14,8 @@ const GetBlogByCategory = require("../controllers/blogPost/filterBlogByCategory.
 const GetOwnBlogs = require("../controllers/blogPost/GetOwnBlogs.js");
 const User = require("../models/User.js");
 const GetComment = require("../controllers/comment/GetComment.js");
+const GetOneBlog = require("../controllers/blogPost/GetOneBlog.js");
+const GetCommentsOfPost = require("../controllers/comment/GetCommentsOfPost.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -46,5 +48,7 @@ router.post("/comment/:id", isAuthenticated, PostComment);
 router.get("/blog/category", isAuthenticated, GetBlogByCategory);
 router.get("/logout", Logout);
 router.get("/comment/:post", GetComment);
+router.get("/blog/:id", isAuthenticated, GetOneBlog);
+router.get("/blog/:ids", isAuthenticated, GetCommentsOfPost);
 
 module.exports = router;
