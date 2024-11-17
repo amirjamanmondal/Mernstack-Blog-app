@@ -43,7 +43,8 @@ const UserProfile = () => {
           </span>
           <span className="w-fit bg-blue-500 p-2 rounded-md ">{user.name}</span>
           <span className="w-fit bg-blue-500 p-2 rounded-md">
-            {user.gender}
+            {user.gender} 
+            <img src="https://img.icons8.com/flat-round/64/loop.png" alt="update" className="w-4 h-4 rounded-xl bg-white" />
           </span>
         </div>
         <div className="w-fit h-fit flex flex-col justify-start items-start gap-5">

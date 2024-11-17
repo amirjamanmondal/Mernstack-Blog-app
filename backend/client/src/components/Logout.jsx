@@ -14,11 +14,14 @@ const Logout = () => {
       });
       const data = res.data;
       setMessage(data.message);
-      console.log(data.message); // Log directly to avoid async issue
+      console.log(data.message);
+      alert(data.message); // Log directly to avoid async issue
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
-      alert(error.response?.data?.message || "An error occurred during logout.");
+      alert(
+        error.response?.data?.message || "An error occurred during logout."
+      );
     }
   };
 

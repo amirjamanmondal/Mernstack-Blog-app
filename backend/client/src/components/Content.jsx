@@ -1,8 +1,11 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Content = () => {
   const [content, setContent] = useState(null);
+  const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
   const content_url = "http://localhost:8000/user/blog";
 
   useEffect(() => {
@@ -15,7 +18,8 @@ const Content = () => {
 
         // setContent(res.data);
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        alert(error.message);
+        navigate("/login");
       }
     };
     fetchData();
@@ -27,8 +31,8 @@ const Content = () => {
     }
     return (
       <div className="w-full h-fit flex flex-col justify-around items-center gap-3 border p-3">
-        {content.map((item,index)=>{
-          <div key={index} id={item._id}></div>
+        {content.map((item, index) => {
+          <div key={index} id={item._id}></div>;
         })}
 
         <h1 className="w-fit p-2 text-xl font-bold text-blue-500">

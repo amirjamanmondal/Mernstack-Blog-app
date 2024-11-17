@@ -7,13 +7,18 @@ import SignupUser from "./pages/SignupUser";
 import Dashboard from "./pages/Dashboard";
 import ViewCotent from "./components/ViewCotent";
 import UserProfile from "./components/UserProfile";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="w-screen h-fit flex justify-between flex-col items-center gap-2">
+    <div className="w-full h-fit flex justify-between flex-col items-center gap-2">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Container Children={<Dashboard />} />} />
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/dashboard"
+          element={<Container Children={<Dashboard />} />}
+        />
         <Route path="/login" element={<LoginUser />} />
         <Route path="/signup" element={<SignupUser />} />
         <Route path="/blog" element={<ViewCotent />} />
