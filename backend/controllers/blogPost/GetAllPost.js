@@ -1,7 +1,8 @@
 const BlogPost = require("../../models/Blogpost");
 const GetAllPost = async (req, res) => {
   try {
-    const Posts = await BlogPost.find();
+    
+    const Posts = await BlogPost.find({});
 
     if (!Posts)
       return res

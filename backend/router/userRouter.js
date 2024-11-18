@@ -16,6 +16,7 @@ const User = require("../models/User.js");
 const GetComment = require("../controllers/comment/GetComment.js");
 const GetOneBlog = require("../controllers/blogPost/GetOneBlog.js");
 const GetCommentsOfPost = require("../controllers/comment/GetCommentsOfPost.js");
+const FindUser = require("../controllers/user/FindUser.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -50,5 +51,6 @@ router.get("/logout", Logout);
 router.get("/comment/:post", GetComment);
 router.get("/blog/:id", isAuthenticated, GetOneBlog);
 router.get("/blog/:ids", isAuthenticated, GetCommentsOfPost);
+router.get("/blog/commenter/:id", isAuthenticated, FindUser);
 
 module.exports = router;

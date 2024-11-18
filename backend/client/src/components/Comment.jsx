@@ -1,11 +1,10 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const Comment = ({comment}) => {
-  return (
-    <div>
-        
-    </div>
-  )
-}
+const Comment = ({ comments }) => {
+  console.log(comments);
 
-export default Comment
+  return <div className="w-fit h-fit px-4 rounded-md bg-blue-500">{comments.length}</div>;
+};
+
+export default Comment;

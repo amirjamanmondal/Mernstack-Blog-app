@@ -1,10 +1,10 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Comment from "./Comment";
 
 const Content = () => {
-  const [content, setContent] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [contents, setContent] = useState(null);
   const navigate = useNavigate();
   const content_url = "http://localhost:8000/user/blog";
 
@@ -26,27 +26,30 @@ const Content = () => {
   }, []);
 
   const renderContent = () => {
-    if (!content) {
-      return <div>Loading user data...</div>;
+    if (!contents) {
+      return <div>No data Found</div>;
     }
     return (
-      <div className="w-full h-fit flex flex-col justify-around items-center gap-3 border p-3">
-        {content.map((item, index) => {
-          <div key={index} id={item._id}></div>;
+      <div className="w-1/2 h-fit flex flex-col justify-around items-start gap-3 p-3">
+        {contents.map((item, index) => {
+          const update = new Date(item.updatedAt);
+          const formattedDateUpdate = new Intl.DateTimeFormat("en-US", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          }).format(update);
+          return (
+            <div
+              key={index}
+              id={item._id}
+              className="w-full h-fit p-4 bg-red-300 rounded-md"
+            >
+              <h1 className="text text-blue-800 hover:underline cursor-pointer">{item.title || "hello"}</h1>
+              <p className="text-sm font-thin text-red-600">{formattedDateUpdate}</p>
+              <p className="w-fit h-fit p-2">{item.content}</p>
+              <Comment comments={item.comments} />
+            </div>
+          );
         })}
-
-        <h1 className="w-fit p-2 text-xl font-bold text-blue-500">
-          Hello new content
-        </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
-          ipsam sunt magnam, saepe accusantium adipisci magni libero, similique
-          ut consequuntur quisquam ullam quam, voluptatibus temporibus inventore
-          necessitatibus repudiandae hic impedit consequatur. Quae perspiciatis
-          neque ullam maxime, exercitationem laudantium nobis id. At laudantium,
-          aperiam aliquid iure velit nulla aut rerum dolore, minus accusamus
-          quidem, vitae sit hic quo ea omnis dolores?
-        </p>
       </div>
     );
   };
