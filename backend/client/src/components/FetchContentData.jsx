@@ -13,7 +13,6 @@ const FetchContentData = () => {
       try {
         const res = await axios.get(content_url, { withCredentials: true });
         const data = res.data;
-        console.log(data.blogs);
         setContent(data.blogs);
 
         // setContent(res.data);
@@ -26,7 +25,7 @@ const FetchContentData = () => {
   }, []);
 
   return (
-    <div>
+    <div className="w-2/3 h-fit ">
       <Content contents={contents} />
     </div>
   );
