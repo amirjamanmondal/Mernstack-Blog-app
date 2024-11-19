@@ -3,28 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Comment from "./Comment";
 
-const Content = () => {
-  const [contents, setContent] = useState(null);
-  const navigate = useNavigate();
-  const content_url = "http://localhost:8000/user/blog";
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(content_url, { withCredentials: true });
-        const data = res.data;
-        console.log(data.blogs);
-        setContent(data.blogs);
-
-        // setContent(res.data);
-      } catch (error) {
-        alert(error.message);
-        navigate("/login");
-      }
-    };
-    fetchData();
-  }, []);
-
+const Content = ({ contents }) => {
   const renderContent = () => {
     if (!contents) {
       return <div>No data Found</div>;
@@ -43,8 +22,13 @@ const Content = () => {
               id={item._id}
               className="w-full h-fit p-4 bg-red-300 rounded-md"
             >
-              <h1 className="text text-blue-800 hover:underline cursor-pointer">{item.title || "hello"}</h1>
-              <p className="text-sm font-thin text-red-600">{formattedDateUpdate}</p>
+              <h3>{item.author}</h3>
+              <h1 className="text text-blue-800 hover:underline cursor-pointer">
+                {item.title || "hello"}
+              </h1>
+              <p className="text-sm font-thin text-red-600">
+                {formattedDateUpdate}
+              </p>
               <p className="w-fit h-fit p-2">{item.content}</p>
               <Comment comments={item.comments} />
             </div>
