@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import ViewCotent from "./components/ViewCotent";
 import UserProfile from "./components/UserProfile";
 import Home from "./pages/Home";
+import UploadContent from "./components/UploadContent";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup" element={<SignupUser />} />
         <Route path="/blog" element={<ViewCotent />} />
         <Route path="/user" element={<UserProfile />} />
+        <Route path="/upload" element={<UploadContent />} />
       </Routes>
     </div>
   );

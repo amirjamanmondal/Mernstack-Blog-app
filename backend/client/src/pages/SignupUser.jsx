@@ -1,33 +1,33 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignupUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState(null); // Removed unused state for errors
 
   const [togglePassword, setTogglePassword] = useState(false);
 
   const navigate = useNavigate();
-  const Login_URL = "http://localhost:8000/user";
-  const SignupHandler = async (e) => {
+  const signupUrl = "http://localhost:8000/user/signup"; // Corrected endpoint URL
+
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     const apiClient = axios.create({
-      baseURL: ` ${Login_URL}`,
+      baseURL: signupUrl, // Use corrected endpoint URL
       headers: {
         "Content-Type": "application/json",
-        // Add authorization headers if needed
       },
     });
 
-    // Example usage:
     try {
-      const res = await axios.post(
-        "http://localhost:8000/user/signup",
+      const res = await apiClient.post(
+        "",
         {
           name,
           email,
@@ -36,24 +36,39 @@ const SignupUser = () => {
         { withCredentials: true }
       );
       console.log(res.data);
+      toast.success("Signup successful");
       setUser(res.data.user);
-      navigate("/login");
+
+      // Add timestamp after 5 seconds
+      setTimeout(() => {
+        console.log("Signed up at:", new Date().toLocaleString());
+        navigate("/login");
+      }, 5000);
     } catch (error) {
       console.error(error.message);
-      setErrors(error.message);
+      // Handle errors appropriately - consider displaying them to the user
+      // or logging them for debugging purposes
+    } finally {
+      // Optionally, reset form fields here
+      setEmail("");
+      setPassword("");
     }
-    setEmail("");
-    setPassword("");
   };
+
   return (
     <form className="w-[30rem] h-fit bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md ">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        theme="light"
+        className='w-full h-fit'
+      />
+
       <h1 className="text-3xl font-extrabold">Signup</h1>
 
       <input
         value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
+        onChange={(e) => setName(e.target.value)}
         type="text"
         name="name"
         id="name"
@@ -62,9 +77,7 @@ const SignupUser = () => {
       />
       <input
         value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        onChange={(e) => setEmail(e.target.value)}
         type="email"
         name="email"
         id="email"
@@ -73,9 +86,7 @@ const SignupUser = () => {
       />
       <input
         value={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        onChange={(e) => setPassword(e.target.value)}
         type={!togglePassword ? "password" : "text"}
         name="password"
         id="password"
@@ -98,9 +109,7 @@ const SignupUser = () => {
         <label htmlFor="showPassKey">Show Password</label>
       </div>
       <button
-        onClick={(e) => {
-          SignupHandler(e);
-        }}
+        onClick={handleSignup} // Use the renamed function
         type="submit"
         name="name"
         id=""

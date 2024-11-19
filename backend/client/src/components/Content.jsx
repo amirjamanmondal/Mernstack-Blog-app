@@ -25,7 +25,7 @@ const Content = ({ contents }) => {
       return <div>No data Found</div>;
     }
     return (
-      <div className="w-full h-fit flex flex-col justify-around items-start gap-3 p-3">
+      <div className="w-fit h-fit flex flex-col justify-around items-start gap-3 p-3">
         {contents.map((item, index) => {
           const update = new Date(item.updatedAt);
           const formattedDateUpdate = new Intl.DateTimeFormat("en-US", {
