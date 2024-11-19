@@ -2,9 +2,9 @@ const express = require("express");
 const passport = require("passport");
 const Signup = require("../controllers/admin/Signup");
 const isAuthenticated = require("../middleware/AuthUser");
-const GetInfo = require("../controllers/admin/GetInfo");
+const GetAllUsers = require("../controllers/user/GetAllUsers");
 const GetAllPost = require("../controllers/blogPost/GetAllPost");
-const GetAllUsers = require("../controllers/admin/GetAllUsers");
+const GetUserInfo = require("../controllers/user/GetAllUsers");
 const Logout = require("../controllers/admin/Logout");
 const GetBlogOfUser = require("../controllers/blogPost/GetBlogOfUser");
 const Admin = require("../models/Admin");
@@ -39,14 +39,13 @@ adminRouter.post("/login", async (req, res) => {
   }
 });
 
-adminRouter.get("/info", isAuthenticated, GetInfo);
+adminRouter.get("/users", isAuthenticated, GetAllUsers);
 
 adminRouter.post("/blog", isAuthenticated, GetAllPost);
 
-adminRouter.get("/users", isAuthenticated, GetAllUsers);
+adminRouter.get("/users", isAuthenticated, GetUserInfo);
 adminRouter.get("/user/blog/:id", isAuthenticated, GetBlogOfUser);
 
 adminRouter.get("/logout", Logout);
-
 
 module.exports = adminRouter;
