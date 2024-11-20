@@ -9,9 +9,9 @@ import ViewCotent from "./components/ViewCotent";
 import UserProfile from "./components/UserProfile";
 import Home from "./pages/Home";
 import UploadContent from "./components/UploadContent";
+import Contact from "./components/Contact";
 
 function App() {
-
   return (
     <div className="w-full h-fit flex justify-start flex-col items-center gap-2">
       <Routes>
@@ -20,6 +20,7 @@ function App() {
           path="/dashboard"
           element={<Container Children={<Dashboard />} />}
         />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginUser />} />
         <Route path="/signup" element={<SignupUser />} />
         <Route path="/blog" element={<ViewCotent />} />

@@ -4,13 +4,14 @@ import Content from "./Content";
 import ImgContent from "./ImgContent";
 import UserCard from "./UserCard";
 import axios from "axios";
+import Navbar from "./header/Navbar";
 
-const ViewCotent = ({id}) => {
+const ViewCotent = ({ id }) => {
   useEffect(() => {
     async function fetchBlogData() {
       try {
-        const url = `http://localhost:8000/blog/${id}`
-        const res = await axios.get()
+        const url = `http://localhost:8000/blog/${id}`;
+        const res = await axios.get();
       } catch (error) {
         console.log(error);
       }
@@ -18,18 +19,15 @@ const ViewCotent = ({id}) => {
   }, []);
 
   return (
-    <div className="w-3/4 h-fit p-6 flex flex-col gap-4 text-lg text-white bg-gray-500">
-      {/* // user component will be there */}
-      <UserCard />
-      {/* // content title will be there  */}
-      <ImgContent />
-      {/* //content imgae will be there  */}
-      <Content />
-
-      {/* //like and comment button component will be ther  */}
-      <ContentReact />
+    <div className="w-full h-fit flex flex-col justify-center items-center gap-4 text-lg text-white bg-gray-500">
+      <Navbar />
+      <div className="w-2/3 h-fit flex flex-col justify-center items-center gap-2 p-4 ">
+        <UserCard />
+        <ImgContent />
+        <Content />
+        <ContentReact />
+      </div>
     </div>
   );
 };
-
 export default ViewCotent;

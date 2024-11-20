@@ -35,7 +35,7 @@ const UserProfile = () => {
     }).format(create);
 
     return (
-      <div className="w-full h-fit flex justify-center items-start bg-slate-400 gap-4 flex-col">
+      <div className="w-full h-fit flex justify-center items-center bg-slate-400 gap-4 flex-col">
         <Navbar />
         <div className="w-full h-fit flex justify-center gap-3">
           <div className="w-fit h-fit flex justify-start items-start gap-2 flex-col p-2">
@@ -51,6 +51,7 @@ const UserProfile = () => {
         </div>
         <FetchContentData
           content_url={`http://localhost:8000/user/user/blog/${user._id}`}
+          userId={user._id}
         />
       </div>
     );

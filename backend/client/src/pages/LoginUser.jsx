@@ -33,22 +33,20 @@ const LoginUser = () => {
       );
       console.log(res.data);
       setUser(res.data.user);
+      toast(res.data.message);
       setTimeout(() => {
-        res.data.message;
+        navigate("/user");
       }, 3000);
       localStorage.setItem("sid", res.data?.token);
-      navigate("/user");
     } catch (error) {
       console.error(error.message);
-      setTimeout(() => {
-        toast(error.message);
-      }, 3000);
+      toast(error.message);
     }
     setEmail("");
     setPassword("");
   };
   return (
-    <form className="w-[30rem] h-[30rem] bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md mb-3">
+    <form className="w-[30rem] h-[30rem] bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md mt-4">
       <Toaster />
       <h1 className="text-3xl font-extrabold">Login</h1>
       <input
