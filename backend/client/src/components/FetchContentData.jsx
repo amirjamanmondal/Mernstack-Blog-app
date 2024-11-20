@@ -3,10 +3,9 @@ import axios from "axios";
 import Content from "./Content";
 import { useNavigate } from "react-router-dom";
 
-const FetchContentData = () => {
+const FetchContentData = ({content_url}) => {
   const [contents, setContent] = useState(null);
   const navigate = useNavigate();
-  const content_url = "http://localhost:8000/user/blog";
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./header/Navbar";
+import FetchContentData from "./FetchContentData";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -31,33 +33,25 @@ const UserProfile = () => {
       dateStyle: "medium",
       timeStyle: "short",
     }).format(create);
-    const formattedDateUpdate = new Intl.DateTimeFormat("en-US", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    }).format(update);
+
     return (
-      <div className="w-full h-fit p-8 flex justify-center items-start bg-slate-400 gap-4">
-        <div className="w-fit h-fit flex justify-start items-start gap-5 flex-col">
-          <span className="w-fit bg-blue-500 p-2 rounded-md ">
-            {user.email}
-          </span>
-          <span className="w-fit bg-blue-500 p-2 rounded-md ">{user.name}</span>
-          <span className="w-fit bg-blue-500 p-2 rounded-md">
-            {user.gender} 
-            <img src="https://img.icons8.com/flat-round/64/loop.png" alt="update" className="w-4 h-4 rounded-xl bg-white" />
-          </span>
+      <div className="w-full h-fit flex justify-center items-start bg-slate-400 gap-4 flex-col">
+        <Navbar />
+        <div className="w-full h-fit flex justify-center gap-3">
+          <div className="w-fit h-fit flex justify-start items-start gap-2 flex-col p-2">
+            <span className="w-fit rounded-md ">{user.email}</span>
+            <span className="w-fit rounded-md ">{user.name}</span>
+            <span className="w-fit rounded-md">{user.gender}</span>
+          </div>
+          <div className="w-fit h-fit flex flex-col justify-start items-start gap-2 p-2">
+            <span className="w-fit text-sm ">
+              Joined : {formattedDateCreate}
+            </span>
+          </div>
         </div>
-        <div className="w-fit h-fit flex flex-col justify-start items-start gap-5">
-          <span className="w-fit text-sm border border-blue-500 p-2 rounded-md">
-            Created: {formattedDateCreate}
-          </span>
-          <span className="w-fit text-sm border border-blue-500 p-2 rounded-md">
-            Update: {formattedDateUpdate}
-          </span>
-          <button>
-            <a href="/blog">content</a>
-          </button>
-        </div>
+        <FetchContentData
+          content_url={`http://localhost:8000/user/user/blog/${user._id}`}
+        />
       </div>
     );
   };

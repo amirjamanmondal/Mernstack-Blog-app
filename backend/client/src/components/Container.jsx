@@ -1,12 +1,12 @@
 import React from "react";
-import UploadButtons from "./UploadButtons";
+import Navbar from "./header/Navbar";
 
 const Container = ({ Children }) => {
   return (
     <div className="w-full h-screen bg-gray-500">
-      <UploadButtons />
+      <Navbar />
+
       {Children}
-      <span className="material-icons-outlined">search</span>
     </div>
   );
 };

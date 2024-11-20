@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignupUser = () => {
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const SignupUser = () => {
         { withCredentials: true }
       );
       console.log(res.data);
-      toast.success("Signup successful");
+      toast("Signup Successful");
       setUser(res.data.user);
 
       // Add timestamp after 5 seconds
@@ -57,12 +57,7 @@ const SignupUser = () => {
 
   return (
     <form className="w-[30rem] h-fit bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md ">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        theme="light"
-        className='w-full h-fit'
-      />
+      <Toaster />
 
       <h1 className="text-3xl font-extrabold">Signup</h1>
 

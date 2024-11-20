@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import img from '../assests/userIcon.png'
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginUser = () => {
   const [email, setEmail] = useState("");
@@ -33,18 +33,23 @@ const LoginUser = () => {
       );
       console.log(res.data);
       setUser(res.data.user);
+      setTimeout(() => {
+        res.data.message;
+      }, 3000);
       localStorage.setItem("sid", res.data?.token);
       navigate("/user");
     } catch (error) {
       console.error(error.message);
-      setErrors(error.message);
+      setTimeout(() => {
+        toast(error.message);
+      }, 3000);
     }
     setEmail("");
     setPassword("");
   };
   return (
     <form className="w-[30rem] h-[30rem] bg-yellow-300 p-6 text-xl flex justify-start items-center flex-col gap-8 rounded-md mb-3">
-      <p>{user ? <span>Login successful</span> : <span></span>}</p>
+      <Toaster />
       <h1 className="text-3xl font-extrabold">Login</h1>
       <input
         value={email}

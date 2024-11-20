@@ -11,9 +11,9 @@ import Home from "./pages/Home";
 import UploadContent from "./components/UploadContent";
 
 function App() {
+
   return (
-    <div className="w-full h-fit flex justify-between flex-col items-center gap-2">
-      <Navbar />
+    <div className="w-full h-fit flex justify-start flex-col items-center gap-2">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
