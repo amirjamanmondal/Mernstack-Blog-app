@@ -2,10 +2,8 @@ const BlogPost = require("../../models/Blogpost.js");
 
 const GetOwnBlogs = async (req, res) => {
   try {
-    const user = req.params.id;
-    const blogs = await BlogPost.find({ author: id }).select(
-      "_id content category comments"
-    );
+    const id = req.params.id;
+    const blogs = await BlogPost.find({ author: id });
 
     if (!blogs)
       return res

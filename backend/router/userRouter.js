@@ -12,10 +12,10 @@ const DeleteBlog = require("../controllers/blogPost/deleteBlog.js");
 const PostComment = require("../controllers/comment/postComment.js");
 const GetBlogByCategory = require("../controllers/blogPost/filterBlogByCategory.js");
 const GetOwnBlogs = require("../controllers/blogPost/GetOwnBlogs.js");
-const User = require("../models/User.js");
+
 const GetComment = require("../controllers/comment/GetComment.js");
 const GetOneBlog = require("../controllers/blogPost/GetOneBlog.js");
-const GetCommentsOfPost = require("../controllers/comment/GetCommentsOfPost.js");
+
 const FindUser = require("../controllers/user/FindUser.js");
 const GetAllUsers = require("../controllers/user/GetAllUsers.js");
 const router = express.Router();
@@ -38,22 +38,44 @@ router.post(
   }
 );
 
+// fetch loged user info
 router.get("/", isAuthenticated, GetUser);
 
+// post authenticated blog
 router.post("/blog", isAuthenticated, CreateBlog);
 
+// get all blogs from database
 router.get("/blog", isAuthenticated, GetBlogs);
+
+// get own blog of user
 router.get("/user/blog/:id", isAuthenticated, GetOwnBlogs);
+
+// update blog by authentic user and its own
 router.patch("/blog/:id", isAuthenticated, UpdateBlog);
+
+// delete blogs
 router.delete("/blog/:id", isAuthenticated, DeleteBlog);
+
+// post comment on the blog authentic user
 router.post("/comment/:id", isAuthenticated, PostComment);
+
+// get all category that created by user
 router.get("/blog/category", isAuthenticated, GetBlogByCategory);
+
+// logout user
 router.get("/logout", Logout);
+
+// get all comment
 router.get("/comment/:post", GetComment);
+
+// fetch one blog by blog id
 router.get("/blog/:id", isAuthenticated, GetOneBlog);
-router.get("/blog/:ids", isAuthenticated, GetCommentsOfPost);
+
+// find user by id
 router.get("/blog/commenter/:id", isAuthenticated, FindUser);
+
 router.get("/:id", isAuthenticated, FindUser);
+// fetch all user that is in the db
 router.get("/user/all", isAuthenticated, GetAllUsers);
 
 module.exports = router;
