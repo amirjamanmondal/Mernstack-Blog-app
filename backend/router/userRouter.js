@@ -43,7 +43,7 @@ router.get("/", isAuthenticated, GetUser);
 router.post("/blog", isAuthenticated, CreateBlog);
 
 router.get("/blog", isAuthenticated, GetBlogs);
-router.get("/user/blog", isAuthenticated, GetOwnBlogs);
+router.get("/user/blog/:id", isAuthenticated, GetOwnBlogs);
 router.patch("/blog/:id", isAuthenticated, UpdateBlog);
 router.delete("/blog/:id", isAuthenticated, DeleteBlog);
 router.post("/comment/:id", isAuthenticated, PostComment);
