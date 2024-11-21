@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import Navbar from "./header/Navbar";
+import Navbar from "./headerandFooter/Navbar";
 
 const UploadContent = () => {
   const [title, settitle] = useState("");

@@ -1,8 +1,9 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./header/Navbar";
+import Navbar from "./headerandFooter/Navbar";
 import FetchContentData from "./FetchContentData";
+import Footer from "./headerandFooter/Footer";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -53,6 +54,7 @@ const UserProfile = () => {
           content_url={`http://localhost:8000/user/user/blog/${user._id}`}
           userId={user._id}
         />
+        <Footer/>
       </div>
     );
   };

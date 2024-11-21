@@ -4,7 +4,7 @@ import Content from "./Content";
 import ImgContent from "./ImgContent";
 import UserCard from "./UserCard";
 import axios from "axios";
-import Navbar from "./header/Navbar";
+import Navbar from "./headerandFooter/Navbar";
 
 const ViewCotent = ({ id }) => {
   useEffect(() => {

@@ -7,9 +7,6 @@ const SignupUser = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
-  const [errors, setErrors] = useState(null); // Removed unused state for errors
-
   const [togglePassword, setTogglePassword] = useState(false);
 
   const navigate = useNavigate();
@@ -35,19 +32,14 @@ const SignupUser = () => {
         },
         { withCredentials: true }
       );
-      console.log(res.data);
-      toast("Signup Successful");
-      setUser(res.data.user);
-
+      toast(res.data?.message);
       // Add timestamp after 5 seconds
       setTimeout(() => {
         console.log("Signed up at:", new Date().toLocaleString());
         navigate("/login");
       }, 5000);
     } catch (error) {
-      console.error(error.message);
-      // Handle errors appropriately - consider displaying them to the user
-      // or logging them for debugging purposes
+      toast(error.message);
     } finally {
       // Optionally, reset form fields here
       setEmail("");

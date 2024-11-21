@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./header/Navbar";
+import Navbar from "./headerandFooter/Navbar";
 
 const Container = ({ Children }) => {
   return (

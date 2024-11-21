@@ -73,7 +73,7 @@ const Content = ({ contents, userId }) => {
                     delete
                   </button>
                 ) : (
-                  <span className="w-fit h-fit p-2 bg-green-500 rounded-md">
+                  <span className="w-fit h-fit p-2 bg-green-500 rounded-md cursor-pointer hover:bg-gray-500">
                     save
                   </span>
                 )}
