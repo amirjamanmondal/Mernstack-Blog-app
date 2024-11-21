@@ -10,7 +10,6 @@ const UpdateBlog = require("../controllers/blogPost/updateBlog.js");
 const GetBlogs = require("../controllers/blogPost/getBlogs.js");
 const DeleteBlog = require("../controllers/blogPost/deleteBlog.js");
 const PostComment = require("../controllers/comment/postComment.js");
-const GetBlogByCategory = require("../controllers/blogPost/filterBlogByCategory.js");
 const GetOwnBlogs = require("../controllers/blogPost/GetOwnBlogs.js");
 
 const GetComment = require("../controllers/comment/GetComment.js");
@@ -58,9 +57,6 @@ router.delete("/blog/:id", isAuthenticated, DeleteBlog);
 
 // post comment on the blog authentic user
 router.post("/comment/:id", isAuthenticated, PostComment);
-
-// get all category that created by user
-router.get("/blog/category", isAuthenticated, GetBlogByCategory);
 
 // logout user
 router.get("/logout", Logout);
