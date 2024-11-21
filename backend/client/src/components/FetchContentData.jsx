@@ -17,7 +17,7 @@ const FetchContentData = ({ content_url,userId}) => {
         const res = await axios.get(content_url, { withCredentials: true });
         const data = res.data;
         setContent(data.blogs);
-        toast(res.data?.message);
+        // toast(res.data?.message);
       } catch (error) {
         toast(error.message);
         setTimeout(() => {

@@ -6,9 +6,9 @@ import Navbar from "./headerandFooter/Navbar";
 const UploadContent = () => {
   const [title, settitle] = useState("");
   const [content, setcontent] = useState("");
-  const [tag, settag] = useState("");
+  const [tags, setTags] = useState([]);
+  const [tag, setTag] = useState("");
   const [category, setcategory] = useState("");
-  const [errors, seterrors] = useState(null);
 
   const handlePost = async (e) => {
     try {
@@ -17,7 +17,7 @@ const UploadContent = () => {
         {
           title,
           content,
-          tag,
+          tags,
           category,
         },
         { withCredentials: true }
@@ -26,10 +26,16 @@ const UploadContent = () => {
       setTimeout(() => {
         toast(res.data.message);
       }, 5000);
-      console.log(data);
     } catch (error) {
-      console.log(error.message);
-      seterrors(error.message);
+      toast(error.message);
+    }
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Tab") {
+      setTags([...tags, tag]);
+      setTag("");
+      console.log(tags);
     }
   };
 
@@ -60,7 +66,8 @@ const UploadContent = () => {
             name="tag"
             id="tag"
             value={tag}
-            onChange={(e) => settag(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
+            onKeyDown={handleKeyPress}
             placeholder="add some tag"
             className="w-full h-fit rounded-md p-2"
           />

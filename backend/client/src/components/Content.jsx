@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
 import Comment from "./Comment";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import FilterBlog from "../components/FilterBlog";
 
 const Content = ({ contents, userId }) => {
   const [users, setUser] = useState();
+  const [filter, setfilter] = useState();
+  const [filteredBlog, setFilteredBlog] = useState(null);
 
-  const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -20,19 +21,16 @@ const Content = ({ contents, userId }) => {
       }
     }
     fetchUser();
-  }, []);
+  }, [contents]);
 
   async function deletePost(itemId) {
     try {
-      const res = await axios.delete(
-        `http://localhost:8000/user/blog/${itemId}`,
-        { withCredentials: true }
-      );
-      const data = res.data?.message;
-      toast(data);
+      await axios.delete(`http://localhost:8000/user/blog/${itemId}`, {
+        withCredentials: true,
+      });
       setTimeout(() => {
-        navigate("/user");
-      }, 3000);
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       toast(error.message);
     }
@@ -43,8 +41,10 @@ const Content = ({ contents, userId }) => {
       return <div>No data Found</div>;
     }
     return (
-      <div className="w-full h-fit flex flex-col justify-around items-start gap-3 p-3">
+      <div className="w-full h-fit flex flex-col justify-around items-start gap-4 p-3">
         <Toaster />
+        <FilterBlog setfilter={setfilter} />
+
         {contents.map((item, index) => {
           const update = new Date(item.updatedAt);
           const formattedDateUpdate = new Intl.DateTimeFormat("en-US", {
@@ -55,23 +55,28 @@ const Content = ({ contents, userId }) => {
           const matchingUser = users.filter(
             (user) => user._id === item.author
           )[0];
-          console.log({ matchingUser });
 
           return (
             <div
               key={index}
               id={item._id}
-              className="w-full h-fit p-4 bg-red-300 rounded-md"
+              className="w-full h-fit p-4 bg-red-300 rounded-md flex flex-col gap-2"
             >
               <div className="w-full h-fit flex justify-between items-center">
                 <h3>{matchingUser.name}</h3>
                 {userId === item.author ? (
-                  <button
-                    className="w-fit h-fit p-2 bg-red-500 rounded-md"
-                    onClick={() => deletePost(item._id)}
-                  >
-                    delete
-                  </button>
+                  <div className="w-fit h-fit flex gap-2">
+                    <button className="w-fit h-fit p-2 bg-blue-500 rounded-md hover:bg-green-600">
+                      Update
+                    </button>
+
+                    <button
+                      className="w-fit h-fit p-2 bg-red-500 rounded-md hover:bg-gray-600"
+                      onClick={() => deletePost(item._id)}
+                    >
+                      delete
+                    </button>
+                  </div>
                 ) : (
                   <span className="w-fit h-fit p-2 bg-green-500 rounded-md cursor-pointer hover:bg-gray-500">
                     save
@@ -85,7 +90,24 @@ const Content = ({ contents, userId }) => {
                 {formattedDateUpdate}
               </p>
               <p className="w-fit h-fit p-2">{item.content}</p>
-              <Comment comments={item.comments} />
+              <p className="w-full h-fit flex justify-start items-center gap-2">
+                {item.tags.map(
+                  (
+                    chunk,
+                    index // Replaced 'chunks' with 'chunk' for clarity
+                  ) => (
+                    <li
+                      key={index}
+                      className="w-fit h-fit list-none bg-gray-300 px-1"
+                    >
+                      {chunk}
+                    </li>
+                  )
+                )}
+              </p>
+              <p className="w-fit h-fit p-2 border border-green-500 rounded-full">
+                {item.category}
+              </p>
             </div>
           );
         })}
