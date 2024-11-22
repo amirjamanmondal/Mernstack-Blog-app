@@ -4,10 +4,9 @@ import Content from "./Content";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-const FetchContentData = ({ content_url,userId}) => {
+const FetchContentData = ({ content_url, userId }) => {
   const [contents, setContent] = useState(null);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchData = async () => {
       try {

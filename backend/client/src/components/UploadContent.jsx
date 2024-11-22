@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Navbar from "./headerandFooter/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const UploadContent = () => {
   const [title, settitle] = useState("");
@@ -9,8 +10,17 @@ const UploadContent = () => {
   const [tags, setTags] = useState([]);
   const [tag, setTag] = useState("");
   const [category, setcategory] = useState("");
+  const navigate = useNavigate();
 
   const handlePost = async (e) => {
+    const apiClient = axios.create({
+      baseURL: `http://localhost:8000/user`,
+      headers: {
+        "Content-Type": "application/json",
+        // Add authorization headers if needed
+      },
+    });
+
     try {
       const res = await axios.post(
         `http://localhost:8000/user/blog`,
@@ -23,16 +33,15 @@ const UploadContent = () => {
         { withCredentials: true }
       );
       const data = res.data;
-      setTimeout(() => {
-        toast(res.data.message);
-      }, 5000);
+      toast(res.data.message);
+      navigate("/user");
     } catch (error) {
       toast(error.message);
     }
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Tab") {
+    if (event.key === "ArrowRight") {
       setTags([...tags, tag]);
       setTag("");
       console.log(tags);

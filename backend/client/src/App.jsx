@@ -10,6 +10,7 @@ import UserProfile from "./components/UserProfile";
 import Home from "./pages/Home";
 import UploadContent from "./components/UploadContent";
 import Contact from "./components/Contact";
+import UpdateContent from "./components/UpdateContent";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/blog" element={<ViewCotent />} />
         <Route path="/user" element={<UserProfile />} />
         <Route path="/upload" element={<UploadContent />} />
+        <Route path="/update/:id" element={<UpdateContent />} />
       </Routes>
     </div>
   );

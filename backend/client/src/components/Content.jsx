@@ -1,14 +1,13 @@
 import axios from "axios";
-import React, { Suspense, useEffect, useLayoutEffect, useState } from "react";
-import Comment from "./Comment";
+import React, { Suspense, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import FilterBlog from "../components/FilterBlog";
+import { useNavigate } from "react-router-dom";
 
 const Content = ({ contents, userId }) => {
   const [users, setUser] = useState();
-  const [filter, setfilter] = useState();
-  const [filteredBlog, setFilteredBlog] = useState(null);
 
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -21,7 +20,11 @@ const Content = ({ contents, userId }) => {
       }
     }
     fetchUser();
-  }, [contents]);
+  }, []);
+
+  function handleNavigate(id) {
+    navigate(`/update/${id}`);
+  }
 
   async function deletePost(itemId) {
     try {
@@ -43,7 +46,7 @@ const Content = ({ contents, userId }) => {
     return (
       <div className="w-full h-fit flex flex-col justify-around items-start gap-4 p-3">
         <Toaster />
-        <FilterBlog setfilter={setfilter} />
+        <FilterBlog />
 
         {contents.map((item, index) => {
           const update = new Date(item.updatedAt);
@@ -66,7 +69,10 @@ const Content = ({ contents, userId }) => {
                 <h3>{matchingUser.name}</h3>
                 {userId === item.author ? (
                   <div className="w-fit h-fit flex gap-2">
-                    <button className="w-fit h-fit p-2 bg-blue-500 rounded-md hover:bg-green-600">
+                    <button
+                      className="w-fit h-fit p-2 bg-blue-500 rounded-md hover:bg-green-600"
+                      onClick={() => handleNavigate(item._id)}
+                    >
                       Update
                     </button>
 
