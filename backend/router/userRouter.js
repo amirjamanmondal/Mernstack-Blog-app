@@ -49,6 +49,9 @@ router.get("/blog", isAuthenticated, GetBlogs);
 // get own blog of user
 router.get("/user/blog/:id", isAuthenticated, GetOwnBlogs);
 
+// fetch one blog by blog id
+router.get("/blog/:id", isAuthenticated, GetOneBlog);
+
 // update blog by authentic user and its own
 router.patch("/blog/:id", isAuthenticated, UpdateBlog);
 
@@ -64,8 +67,7 @@ router.get("/logout", Logout);
 // get all comment
 router.get("/comment/:post", GetComment);
 
-// fetch one blog by blog id
-router.get("/blog/:id", isAuthenticated, GetOneBlog);
+
 
 // find user by id
 router.get("/blog/commenter/:id", isAuthenticated, FindUser);
