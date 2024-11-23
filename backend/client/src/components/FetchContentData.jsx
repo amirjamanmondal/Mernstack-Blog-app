@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 const FetchContentData = ({ content_url, userId }) => {
   const [contents, setContent] = useState(null);
   const navigate = useNavigate();
-  useEffect(() => {
+  useEffect(() => { 
     const fetchData = async () => {
       try {
         if (!content_url) {

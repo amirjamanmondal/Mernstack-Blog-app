@@ -9,19 +9,10 @@ const LoginUser = () => {
   const [user, setUser] = useState(null);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
-  const Login_URL = "http://localhost:8000/user";
+
   const LoginHandler = async (e) => {
     e.preventDefault();
 
-    const apiClient = axios.create({
-      baseURL: ` ${Login_URL}`,
-      headers: {
-        "Content-Type": "application/json",
-        // Add authorization headers if needed
-      },
-    });
-
-    // Example usage:
     try {
       const res = await axios.post(
         "http://localhost:8000/user/login",
@@ -42,6 +33,7 @@ const LoginUser = () => {
       console.error(error.message);
       toast(error.message);
     }
+    localStorage.setItem('lastEmail', email);
     setEmail("");
     setPassword("");
   };
@@ -61,6 +53,11 @@ const LoginUser = () => {
         placeholder="Enter your Email"
         className="w-2/3 border rounded-full py-2 px-3"
       />
+      <ul>
+        {suggestions.map(suggestion => (
+          <li key={suggestion.id} onClick={() => setEmail(suggestion.email)}>{suggestion.email}</li>
+        ))}
+      </ul>
       <input
         required
         value={password}
