@@ -15,6 +15,7 @@ const UserProfile = () => {
       try {
         const res = await axios.get(Login_URL, { withCredentials: true });
         setUser(res.data?.user);
+        console.log(res.data);
       } catch (error) {
         navigate("/login");
       }
@@ -38,13 +39,20 @@ const UserProfile = () => {
     return (
       <div className="w-full h-fit flex justify-center items-center bg-slate-400 gap-4 flex-col">
         <Navbar />
-        <div className="w-full h-fit flex justify-center gap-3">
-          <div className="w-fit h-fit flex justify-start items-start gap-2 flex-col p-2">
+        <div className="w-2/3 h-60 flex justify-center text-gray-400 bg-black items-center gap-3 p-8 rounded-md">
+          <div className="w-fit h-full flex justify-start items-center gap-2 flex-col p-2">
+            <img
+              src="http://surl.li/yxjopz"
+              alt="profile"
+              className="w-16 h-16 rounded-full"
+            />
+          </div>
+          <div className="w-fit h-full flex justify-start items-start gap-2 flex-col p-2">
             <span className="w-fit rounded-md ">{user.email}</span>
             <span className="w-fit rounded-md ">{user.name}</span>
             <span className="w-fit rounded-md">{user.gender}</span>
           </div>
-          <div className="w-fit h-fit flex flex-col justify-start items-start gap-2 p-2">
+          <div className="w-fit h-full flex flex-col justify-start items-center gap-2 p-2">
             <span className="w-fit text-sm ">
               Joined : {formattedDateCreate}
             </span>
@@ -54,7 +62,7 @@ const UserProfile = () => {
           content_url={`http://localhost:8000/user/user/blog/${user._id}`}
           userId={user._id}
         />
-        <Footer/>
+        <Footer />
       </div>
     );
   };

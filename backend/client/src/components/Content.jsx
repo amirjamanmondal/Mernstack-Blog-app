@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Content = ({ contents, userId }) => {
   const [users, setUser] = useState();
   const navigate = useNavigate();
+  console.log(contents);
+
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -68,7 +70,9 @@ const Content = ({ contents, userId }) => {
               className="w-full h-fit p-4 bg-red-300 rounded-md flex flex-col gap-2"
             >
               <div className="w-full h-fit flex justify-between items-center">
-                <h3 className="w-fit h-fit p-1 bg-green-500">{matchingUser.name}</h3>
+                <h3 className="w-fit h-fit py-1 px-2 bg-green-500 ">
+                  {matchingUser.name}
+                </h3>
                 {userId === item.author ? (
                   <div className="w-fit h-fit flex gap-2">
                     <button
@@ -92,7 +96,13 @@ const Content = ({ contents, userId }) => {
                 )}
               </div>
               <h1 className="text text-blue-800 hover:underline cursor-pointer">
-                <Link to={`/blog/${encodeURIComponent(matchingUser.name)}/${item._id}/ `}>{item.title || "No title"}</Link>
+                <Link
+                  to={`/blog/${encodeURIComponent(matchingUser.name)}/${
+                    item._id
+                  }/ `}
+                >
+                  {item.title || "No title"}
+                </Link>
               </h1>
               <p className="text-sm font-thin text-red-600">
                 {formattedDateUpdate}

@@ -33,7 +33,7 @@ const LoginUser = () => {
       console.error(error.message);
       toast(error.message);
     }
-    localStorage.setItem('lastEmail', email);
+    localStorage.setItem("lastEmail", email);
     setEmail("");
     setPassword("");
   };
@@ -53,11 +53,7 @@ const LoginUser = () => {
         placeholder="Enter your Email"
         className="w-2/3 border rounded-full py-2 px-3"
       />
-      <ul>
-        {suggestions.map(suggestion => (
-          <li key={suggestion.id} onClick={() => setEmail(suggestion.email)}>{suggestion.email}</li>
-        ))}
-      </ul>
+
       <input
         required
         value={password}
