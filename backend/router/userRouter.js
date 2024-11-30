@@ -17,6 +17,7 @@ const GetOneBlog = require("../controllers/blogPost/GetOneBlog.js");
 
 const FindUser = require("../controllers/user/FindUser.js");
 const GetAllUsers = require("../controllers/user/GetAllUsers.js");
+const FindUserByName = require("../controllers/user/FindUserByName.js");
 const router = express.Router();
 
 router.post("/signup", Signup);
@@ -67,12 +68,11 @@ router.get("/logout", Logout);
 // get all comment
 router.get("/comment/:post", GetComment);
 
-
-
 // find user by id
 router.get("/blog/commenter/:id", isAuthenticated, FindUser);
 
 router.get("/:id", isAuthenticated, FindUser);
+router.get("/name/:name", isAuthenticated, FindUserByName);
 // fetch all user that is in the db
 router.get("/user/all", isAuthenticated, GetAllUsers);
 

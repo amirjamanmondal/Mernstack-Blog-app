@@ -6,8 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Content = ({ contents, userId }) => {
   const [users, setUser] = useState();
+  const [blogs, setBlogs] = useState();
+
+  setTimeout(() => {
+    setBlogs(contents);
+  }, 2000);
+
+  setTimeout(() => {
+    console.log("blogs: ", blogs);
+  }, 5000);
+
   const navigate = useNavigate();
-  console.log(contents);
+  console.log("contents: ", contents);
 
   useEffect(() => {
     async function fetchUser() {
