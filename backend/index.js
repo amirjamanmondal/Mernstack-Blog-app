@@ -27,6 +27,7 @@ const corsOption = {
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your_secret_key",
@@ -56,11 +57,8 @@ mongoose
   )
   .catch((err) => console.error(err.message));
 
-
-
 app.use("/user", router);
 app.use("/admin", adminRouter);
-
 
 // Start the server
 const port = process.env.PORT || 8001;

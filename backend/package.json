@@ -19,10 +19,12 @@
     "express-session": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.0",
+    "multer": "1.4.5-lts.1",
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pnpm": "^9.12.3",
+    "uuid": "^11.0.3",
     "zod": "^3.23.8"
   }
 }
