@@ -16,10 +16,6 @@ const FileUpload = (req, res) => {
     console.log("hls path: ", hlsPath);
 
     // ffmpeg
-    // const ffmpegCommand = `ffmpeg -i ${videoPath} -codec:v.
-    // libx264 -codec:a aac -hls_time 10 -hls_playlist_type
-    // vod -hls_segment_filname "${outputPath}/segment%03d.
-    // ts" -start_number 0 ${hlsPath}`;
     const ffmpegCommand = `ffmpeg -i ${videoPath} -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${outputPath}/segment%03d.ts" -start_number 0 ${hlsPath}`;
 
     // not to be used in production level work
