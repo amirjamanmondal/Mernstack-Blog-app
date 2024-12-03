@@ -2,6 +2,7 @@ const { v4 } = require("uuid");
 const path = require("path");
 const fs = require("fs");
 const { exec } = require("child_process");
+const FileModel = require("../../models/Filemodel");
 
 const FileUpload = (req, res) => {
   try {
@@ -19,7 +20,7 @@ const FileUpload = (req, res) => {
     const ffmpegCommand = `ffmpeg -i ${videoPath} -codec:v libx264 -codec:a aac -hls_time 10 -hls_playlist_type vod -hls_segment_filename "${outputPath}/segment%03d.ts" -start_number 0 ${hlsPath}`;
 
     // not to be used in production level work
-    exec(ffmpegCommand, (error, stdout, stderr) => {
+    exec(ffmpegCommand, async (error, stdout, stderr) => {
       if (error) {
         console.log("exec error: ", error);
       }
@@ -27,10 +28,16 @@ const FileUpload = (req, res) => {
       console.log(`sdterr:  ${stderr}`);
       const videoUrl = `http://localhost:8000/uploads/courses/${lessionId}/index.m3u8`;
 
+      const file = new FileModel({
+        fileName: lessionId,
+        fileUrl: videoUrl,
+      });
+
+      await file.save();
       res.json({
         message: "video converted to HLS format",
-        videoUrl: videoUrl,
-        lessionId: lessionId,
+        file,
+        slNo: 1,
       });
     });
   } catch (error) {

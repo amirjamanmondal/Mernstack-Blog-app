@@ -20,6 +20,7 @@ const GetAllUsers = require("../controllers/user/GetAllUsers.js");
 const FindUserByName = require("../controllers/user/FindUserByName.js");
 const Upload = require("../helpers/file.Uploader.js");
 const FileUpload = require("../controllers/file/FileUpload.js");
+const GetData = require("../controllers/file/GetData.js");
 
 const router = express.Router();
 
@@ -80,5 +81,6 @@ router.get("/name/:name", isAuthenticated, FindUserByName);
 router.get("/user/all", isAuthenticated, GetAllUsers);
 
 router.post("/post", Upload.single("file"), FileUpload);
+router.get("/post/:_id", GetData)
 
 module.exports = router;
